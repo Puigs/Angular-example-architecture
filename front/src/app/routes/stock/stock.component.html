@@ -1,0 +1,60 @@
+<main>
+    <h1>Liste des articles</h1>
+    <div>
+        <nav>
+            <button [hidden]="isLoading" routerLink="add" aria-label="ajouter">
+                <fa-icon [icon]="faPlus"></fa-icon>
+            </button>
+            <fa-icon
+                [hidden]="!isLoading"
+                [icon]="faCircleNotch"
+                [spin]="true"
+            ></fa-icon>
+            <button
+                aria-label="supprimer"
+                [hidden]="selectedArticles.size === 0"
+                (click)="remove()"
+            >
+                <fa-icon [icon]="faTrash"></fa-icon>
+            </button>
+        </nav>
+        <table [hidden]="!isLoading">
+            <thead>
+                <tr>
+                    <th class="name">Name</th>
+                    <th class="price">Price</th>
+                    <th class="quantity">Quantité</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let index of [0, 1, 2, 3, 4]">
+                    <td class="name skeleton">xxx</td>
+                    <td class="price skeleton">xxx</td>
+                    <td class="quantity skeleton">xxx</td>
+                </tr>
+            </tbody>
+        </table>
+        <table [hidden]="isLoading">
+            <thead>
+                <tr>
+                    <th class="name">Name</th>
+                    <th class="price">Price</th>
+                    <th class="quantity">Quantité</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    [class.selected]="selectedArticles.has(article)"
+                    (click)="toggle(article)"
+                    *ngFor="let article of articleService.articles"
+                >
+                    <td class="name">{{ article.name | ellipsis: 11 }}</td>
+                    <td class="price">
+                        {{ article.price | currency: "EUR" | ellipsis: 11 }}
+                    </td>
+                    <td class="quantity">{{ article.quantity }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
