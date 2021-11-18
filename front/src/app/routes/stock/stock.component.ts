@@ -29,8 +29,7 @@ export class StockComponent implements OnInit {
     refresh() {
         this.isLoading = true;
         this.articleService.refresh().subscribe({
-            next: (articles) => {
-                console.log(articles);
+            next: () => {
                 this.isLoading = false;
             },
             error: (err) => {
@@ -52,9 +51,6 @@ export class StockComponent implements OnInit {
         this.articleService
             .delete_article(new Set(this.selectedArticles))
             .subscribe({
-                next: () => {
-                    console.log('remove data');
-                },
             });
         this.selectedArticles.clear();
     }

@@ -32,9 +32,7 @@ export class AddComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         public articleService: ArticleService
-    ) {
-        console.log('Cons');
-    }
+    ) {}
 
     ngOnInit(): void {}
 

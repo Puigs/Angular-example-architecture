@@ -18,26 +18,14 @@ export class HttpArticleService extends ArticleService {
         super.refresh();
         return this.http
             .get<Article[]>('http://localhost:3000/api/articles')
-            .pipe(delay(2000));
-        // .subscribe({
-        //     next: (articles) => {
-        //         this.articles = articles;
-        //         this.save();
-        //     },
-        //     error: (err) => {
-        //         console.log('err : ', err);
-        //     },
-        //     complete: () => {
-        //         console.log('complete');
-        //     },
-        // });
+            .pipe(delay(1500));
     }
 
     override add_article(article: Article): Observable<void> {
         super.add_article(article);
         return this.http
             .post<void>('http://localhost:3000/api/article', article)
-            .pipe(delay(2000));
+            .pipe(delay(1000));
     }
 
     override delete_article(selected_articles: Set<Article>): Observable<void> {
@@ -50,17 +38,6 @@ export class HttpArticleService extends ArticleService {
                 }),
                 body: JSON.stringify(ids),
             })
-            .pipe(delay(2000));
-        // .subscribe({
-        //     next: () => {
-        //         this.refresh();
-        //     },
-        //     error: (err) => {
-        //         console.log('err : ', err);
-        //     },
-        //     complete: () => {
-        //         console.log('complete');
-        //     },
-        // });
+            .pipe(delay(1000));
     }
 }
